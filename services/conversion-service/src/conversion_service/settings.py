@@ -1,0 +1,28 @@
+
+from pydantic_settings import BaseSettings
+
+
+from pydantic import BaseModel
+
+
+class DBConfig(BaseModel):
+    host: str
+    port: str
+    user: str
+    password: str
+    dbname: str
+
+
+class MessageringConfig(BaseModel):
+    url: str
+
+
+class RedisConfig(BaseModel):
+    host: str
+    port: str
+
+class ConversionServiceSettings(BaseSettings):
+
+    DB_ENV: DBConfig
+    CACHE_ENV: RedisConfig
+    MESSAGERING_ENV: MessageringConfig
