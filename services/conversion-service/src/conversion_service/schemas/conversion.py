@@ -1,14 +1,17 @@
 
-
-
-
-
 from typing import Optional
 
+from pydantic import BaseModel
 
-class GetConversionJobRequest:
+
+class DefaultPayload(BaseModel):
     job_id: Optional[str]
+    status: Optional[str]
+    message: Optional[str]
+    presigned_url: Optional[str]
 
-
-class CreateConversionJobRequest:
-    conversion_config: Optional[str]
+class APIGatewayRequest(BaseModel):
+    action: str
+    timestamp: str
+    payload: DefaultPayload
+    

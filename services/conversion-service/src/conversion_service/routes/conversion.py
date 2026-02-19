@@ -6,7 +6,7 @@ from fastapi.responses import JSONResponse
 
 from conversion_service.container import AppContainer
 
-from conversion_service.schemas.conversion import GetConversionJobRequest, CreateConversionJobRequest
+from conversion_service.schemas.conversion import APIGatewayPayload
 
 
 router = APIRouter(tags=["Conversion"])
@@ -16,14 +16,14 @@ def get_container(request: Request) -> AppContainer:
     return request.app.state.container
 
 
-@router.post("/conversion")
+@router.post("/create_conversion_job")
 async def create_conversion_job(
-    request: CreateConversionJobRequest,
+    payload: APIGatewayPayload,
     container: AppContainer = Depends(get_container)
     ):
     
     try:
-        response = await container.create_conversion_job_use_case.execute(request.conversion_config)
+        response = await container.create_conversion_job_use_case.execute(payload.conversion_config)
     except Exception as e:
         return JSONResponse(
             content={"message": e},
@@ -34,14 +34,14 @@ async def create_conversion_job(
 
 
 
-@router.get("/conversion/{account_id}")
+@router.get("/get_conversion_job")
 async def get_conversion_job(
-    account_id: GetConversionJobRequest, 
+    payload: APIGatewayPayload, 
     container: AppContainer = Depends(get_container)
     ):
     
     try:
-        response = await container.get_conversion_job_use_case.execute(account_id)
+        response = await container.get_conversion_job_use_case.execute(payload)
     except Exception as e:
         return JSONResponse(
             content={"message": e},

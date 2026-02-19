@@ -4,6 +4,8 @@ from infra.cache.interface.cache import CacheInterface
 from infra.database.implementation.repository import DatabaseRepository
 from infra.messaging.interface.bus import BusInterface
 
+from conversion_service.schemas.conversion import DefaultPayload # TODO: Change to infra/schemas
+
 
 class CreateConversionJobUseCase:
     def __init__(
@@ -16,5 +18,5 @@ class CreateConversionJobUseCase:
         self.bus = bus
         
     
-    async def execute(self, conversion_config: str):
+    async def execute(self, payload: DefaultPayload):
         ...
