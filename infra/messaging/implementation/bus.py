@@ -8,8 +8,8 @@ from infra.messaging.interface.bus import BusInterface
 
 
 class RabbitBus(BusInterface):
-    def __init__(self, url: str) -> None:
-        self._url = url
+    def __init__(self, user: str, password: str, host: str, port: str) -> None:
+        self._url = f"ampq://{user}:{password}@{host}:{port}/"
         self._connection : RobustConnection | None = None
         self._channel : RobustChannel | None = None
         self._queue : dict[str, RobustQueue] = {}
