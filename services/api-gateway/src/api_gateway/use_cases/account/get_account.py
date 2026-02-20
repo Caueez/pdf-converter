@@ -5,6 +5,7 @@ import hashlib
 from typing import Any
 import uuid
 
+<<<<<<< HEAD
 from infra.http.interface.http import HttpInterface
 
 
@@ -18,3 +19,14 @@ class GetAccountUseCase:
             return response
         except Exception as e:
             raise Exception(e)
+=======
+
+
+
+class GetAccountUseCase:
+    def __init__(self, http_client : HTTPClient) -> None:
+        self.http_client = http_client
+
+    async def execute(self, id: str) -> dict[str, Any]:
+        return {"id": id}
+>>>>>>> 169784b (partial: api-gateway service implementation)

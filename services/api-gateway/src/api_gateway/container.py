@@ -14,8 +14,11 @@ from infra.messaging.schemas.bus_entities import BuildSchema, ExchangeType, Queu
 from api_gateway.use_cases.account import CreateAccountUseCase, GetAccountUseCase
 from api_gateway.use_cases.conversion import CreateConversionJobUseCase, GetConversionJobUseCase
 
+<<<<<<< HEAD
 from infra.http.implementation.httpx import HttpxClient # TODO: Change path to __init__
 
+=======
+>>>>>>> 169784b (partial: api-gateway service implementation)
 
 schema = BuildSchema(
     exchanges=[
@@ -47,7 +50,11 @@ class AppContainer:
 
         self.msg_bootstrap = MessageringBootstrap(self.settings.MESSAGERING_ENV.url, schema)
 
+<<<<<<< HEAD
         self.http_client = HttpxClient()
+=======
+        self.http_client = HTTPClient()
+>>>>>>> 169784b (partial: api-gateway service implementation)
 
         self.cache = RedisCache(
             self.settings.CACHE_ENV.host, 
