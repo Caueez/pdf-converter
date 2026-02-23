@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from conversion_service.routes.conversion import router as conversion_router
+from conversion_service.api.routes.conversion import router as conversion_router
 
 router = APIRouter(prefix="/api/v1")
 

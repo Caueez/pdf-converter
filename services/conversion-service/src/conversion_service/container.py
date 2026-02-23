@@ -6,8 +6,11 @@ from infra.messaging.startup.bootstrap import MessageringBootstrap
 
 from conversion_service.settings import ConversionServiceSettings
 
-from conversion_service.use_case.create_conversion_job import CreateConversionJobUseCase
-from conversion_service.use_case.get_conversion_job import GetConversionJobUseCase
+from conversion_service.application.use_case.create_conversion_job import CreateConversionJobUseCase
+from conversion_service.application.use_case.get_conversion_job import GetConversionJobUseCase
+
+from conversion_service.infrastructure.database.repositories.conversion import ConversionJobRepository
+from conversion_service.infrastructure.database.repositories.user import UserRepository
 
 schema = BuildSchema(
     exchanges=[
@@ -50,14 +53,24 @@ class AppContainer():
             self.settings.DB_ENV.password, 
             self.settings.DB_ENV.dbname
         )
+    
+    def _build_repositories(self):
+        self.conversion_repo = ConversionJobRepository(self.repo)
+        self.user_repo = UserRepository(self.repo)
 
-        self.create_conversion_job_use_case = CreateConversionJobUseCase(self.repo, self.cache, self.bus)
-        self.get_conversion_job_use_case = GetConversionJobUseCase(self.repo, self.cache, self.bus)
+
+    def _build_use_cases(self):
+        self.create_conversion_job_use_case = CreateConversionJobUseCase(self.conversion_repo, self.user_repo, self.cache, self.bus) # TODO: add storage
+        self.get_conversion_job_use_case = GetConversionJobUseCase(self.conversion_repo, self.cache, self.bus)
+
 
     async def startup(self):
         self.bus = await self.msg_bootstrap.start()
         await self.cache.build()
         await self.repo.connect()
+
+        self._build_repositories()
+        self._build_use_cases()
 
         return self
 

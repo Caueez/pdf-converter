@@ -11,4 +11,4 @@ async def lifespan(app: FastAPI):
     
     yield
 
-    app.state.container.shutdown()
+    await app.state.container.shutdown()

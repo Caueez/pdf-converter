@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from conversion_service.routers import router
+from conversion_service.api.routers import router
 
 from conversion_service.lifespan import lifespan
 
