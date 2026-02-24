@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 from infra.http.interface.http import HttpInterface
 
 class CreateAccountUseCase:
@@ -30,4 +29,3 @@ class CreateAccountUseCase:
         
         return {"message": "Account created"}
 >>>>>>> 169784b (partial: api-gateway service implementation)
->>>>>>> 08d1678 (api-gateway conflit)
