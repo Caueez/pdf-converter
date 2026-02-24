@@ -37,7 +37,7 @@ class CreateConversionJobUseCase:
         conversion_job = ConversionJob.create(dto.user_id)
         await self.conversion_repo.create_conversion_job(conversion_job)
 
-        presigned_url = await self.storage.create_presigned_url(conversion_job.bucket_name)
+        presigned_url = await self.storage.generate_presigned_url(conversion_job.bucket_name)
 
         conversion_job.wait_for_upload()
         
@@ -47,4 +47,4 @@ class CreateConversionJobUseCase:
 
         await self.user_repo.upload_user_conversion_history(dto.user_id, user_history)
 
-        return MapperConversionJob.to_api(conversion_job)
+        return MapperConversionJob.to_api(conversion_job) # TODO: criar dto melhor

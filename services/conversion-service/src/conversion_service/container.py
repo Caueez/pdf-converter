@@ -11,6 +11,7 @@ from conversion_service.application.use_case.get_conversion_job import GetConver
 
 from conversion_service.infrastructure.database.repositories.conversion import ConversionJobRepository
 from conversion_service.infrastructure.database.repositories.user import UserRepository
+from infra.storage.s3 import S3Storage
 
 schema = BuildSchema(
     exchanges=[
@@ -53,6 +54,8 @@ class AppContainer():
             self.settings.DB_ENV.password, 
             self.settings.DB_ENV.dbname
         )
+
+        self.storage = S3Storage("my_bucket")
     
     def _build_repositories(self):
         self.conversion_repo = ConversionJobRepository(self.repo)
@@ -60,7 +63,14 @@ class AppContainer():
 
 
     def _build_use_cases(self):
-        self.create_conversion_job_use_case = CreateConversionJobUseCase(self.conversion_repo, self.user_repo, self.cache, self.bus) # TODO: add storage
+        self.create_conversion_job_use_case = CreateConversionJobUseCase(
+            self.conversion_repo, 
+            self.user_repo, 
+            self.cache, 
+            self.bus, 
+            self.storage
+            )
+        
         self.get_conversion_job_use_case = GetConversionJobUseCase(self.conversion_repo, self.cache, self.bus)
 
 
