@@ -8,8 +8,11 @@ import uuid
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 0d12ce1 (partial: implement http_client)
+=======
+>>>>>>> 08d1678 (api-gateway conflit)
 from infra.http.interface.http import HttpInterface
 
 
@@ -35,6 +38,7 @@ class CreateConversionJobUseCase:
             #     "presigned_url": "https://example.com/presigned_url"
             #     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 from infra.http.interface.http import HttpInterface
@@ -48,6 +52,16 @@ class CreateConversionJobUseCase:
 
     async def execute(self, conversion_config: str) -> dict[str, Any]:
 <<<<<<< HEAD
+=======
+=======
+
+
+class CreateConversionJobUseCase:
+    def __init__(self, http_client : HTTPClient) -> None:
+        self.http_client = http_client
+
+    async def execute(self, conversion_config: str) -> dict[str, Any]:
+>>>>>>> 08d1678 (api-gateway conflit)
         return {
             "conversion_config": conversion_config,
             "job_id": str(uuid.uuid4()),
@@ -56,6 +70,7 @@ class CreateConversionJobUseCase:
             "presigned_url": "https://example.com/presigned_url"
             }
 >>>>>>> 169784b (partial: api-gateway service implementation)
+<<<<<<< HEAD
 =======
         try:
             response = await self.http_client.post("http://conversion-service:8000/conversion", data=conversion_config)
@@ -75,3 +90,5 @@ class CreateConversionJobUseCase:
 >>>>>>> 1a86441 (partial: implement http_client)
 =======
 >>>>>>> 0d12ce1 (partial: implement http_client)
+=======
+>>>>>>> 08d1678 (api-gateway conflit)

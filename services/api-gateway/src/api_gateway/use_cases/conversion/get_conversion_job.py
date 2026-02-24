@@ -8,8 +8,11 @@ import uuid
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 0d12ce1 (partial: implement http_client)
+=======
+>>>>>>> 08d1678 (api-gateway conflit)
 from infra.http.interface.http import HttpInterface
 
 class GetConversionJobUseCase:
@@ -21,6 +24,7 @@ class GetConversionJobUseCase:
             response = await self.http_client.get(f"http://conversion-service:8000/conversion/{job_id}")
             return response
         except Exception as e:
+<<<<<<< HEAD
 <<<<<<< HEAD
             raise Exception(e)
 =======
@@ -35,11 +39,23 @@ class GetConversionJobUseCase:
 
     async def execute(self, job_id: str) -> dict[str, Any]:
 <<<<<<< HEAD
+=======
+            raise Exception(e)
+=======
+
+
+class GetConversionJobUseCase:
+    def __init__(self, http_client : HTTPClient) -> None:
+        self.http_client = http_client
+
+    async def execute(self, job_id: str) -> dict[str, Any]:
+>>>>>>> 08d1678 (api-gateway conflit)
         return {
             "job_id": job_id,
             "status": "pending"
             }
 >>>>>>> 169784b (partial: api-gateway service implementation)
+<<<<<<< HEAD
 =======
         try:
             response = await self.http_client.get(f"http://conversion-service:8000/conversion/{job_id}")
@@ -50,3 +66,5 @@ class GetConversionJobUseCase:
 =======
             raise Exception(e)
 >>>>>>> 0d12ce1 (partial: implement http_client)
+=======
+>>>>>>> 08d1678 (api-gateway conflit)

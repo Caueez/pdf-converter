@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 from infra.http.interface.http import HttpInterface
 
 class CreateAccountUseCase:
@@ -11,7 +12,22 @@ class CreateAccountUseCase:
             return response
         except Exception as e:
 <<<<<<< HEAD
+<<<<<<< HEAD
             raise Exception(e)
 =======
             raise Exception(e)
 >>>>>>> 0d12ce1 (partial: implement http_client)
+=======
+            raise Exception(e)
+=======
+
+
+class CreateAccountUseCase:
+    def __init__(self, http_client : HTTPClient) -> None:
+        self.http_client = http_client
+
+    async def execute(self, name: str, email: str, password: str):
+        
+        return {"message": "Account created"}
+>>>>>>> 169784b (partial: api-gateway service implementation)
+>>>>>>> 08d1678 (api-gateway conflit)
