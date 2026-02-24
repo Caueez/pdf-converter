@@ -7,6 +7,9 @@ import uuid
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0d12ce1 (partial: implement http_client)
 from infra.http.interface.http import HttpInterface
 
 class GetConversionJobUseCase:
@@ -18,6 +21,7 @@ class GetConversionJobUseCase:
             response = await self.http_client.get(f"http://conversion-service:8000/conversion/{job_id}")
             return response
         except Exception as e:
+<<<<<<< HEAD
             raise Exception(e)
 =======
 
@@ -43,3 +47,6 @@ class GetConversionJobUseCase:
         except Exception as e:
             raise Exception(e)
 >>>>>>> 1a86441 (partial: implement http_client)
+=======
+            raise Exception(e)
+>>>>>>> 0d12ce1 (partial: implement http_client)

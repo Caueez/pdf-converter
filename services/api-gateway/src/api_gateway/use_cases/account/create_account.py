@@ -10,4 +10,8 @@ class CreateAccountUseCase:
             response = await self.http_client.post(f"http://account-service:8000/account/", data={"name": name, "email": email, "password": password})
             return response
         except Exception as e:
+<<<<<<< HEAD
             raise Exception(e)
+=======
+            raise Exception(e)
+>>>>>>> 0d12ce1 (partial: implement http_client)

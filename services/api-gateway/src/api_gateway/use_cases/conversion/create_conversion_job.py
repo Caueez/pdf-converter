@@ -7,6 +7,9 @@ import uuid
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0d12ce1 (partial: implement http_client)
 from infra.http.interface.http import HttpInterface
 
 
@@ -31,6 +34,7 @@ class CreateConversionJobUseCase:
             #     "message": "Conversion job created",
             #     "presigned_url": "https://example.com/presigned_url"
             #     }
+<<<<<<< HEAD
 =======
 =======
 from infra.http.interface.http import HttpInterface
@@ -69,3 +73,5 @@ class CreateConversionJobUseCase:
             #     "presigned_url": "https://example.com/presigned_url"
             #     }
 >>>>>>> 1a86441 (partial: implement http_client)
+=======
+>>>>>>> 0d12ce1 (partial: implement http_client)
